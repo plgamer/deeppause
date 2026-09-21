@@ -1,0 +1,200 @@
+:root {
+  --accent: #7dd3a0;
+  --bg: #16161a;
+  --fg: #d7d4cd;
+  --dim: #6f6c66;
+  --dimmer: #55524d;
+  --tool: #8ab4f8;
+  --add: #6fbf73;
+  --del: #e0686f;
+  --warn: #e0a458;
+  --rule: #2c2c31;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+
+#app { display: flex; flex-direction: column; height: 100vh; }
+
+/* ------------------------------------------------------------- transcript */
+
+#scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 14px 18px 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule) transparent;
+}
+#scroll::-webkit-scrollbar { width: 9px; }
+#scroll::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 5px; }
+
+#banner {
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-bottom: 18px;
+  max-width: 620px;
+  color: var(--dim);
+}
+#banner .title { color: var(--fg); }
+#banner .glyph { color: var(--accent); margin-right: 6px; }
+#banner .row { white-space: pre-wrap; word-break: break-all; }
+
+.block { margin: 0 0 12px; white-space: pre-wrap; word-wrap: break-word; }
+.block.help { color: var(--dim); }
+
+/* user turn */
+.user { color: var(--dim); margin: 18px 0 14px; }
+.user .gt { color: var(--dimmer); margin-right: 8px; }
+
+/* interior monologue */
+.think {
+  color: var(--dim);
+  font-style: italic;
+  border-left: 1px solid var(--rule);
+  padding-left: 12px;
+  margin-left: 1px;
+}
+
+/* spoken output */
+.text { color: var(--fg); }
+.text::before { content: "● "; color: var(--accent); }
+
+/* ------------------------------------------------------------------ tools */
+
+.tool { margin: 0 0 12px; }
+.tool .head { color: var(--fg); }
+.tool .head .bullet { color: var(--accent); }
+.tool .head .name { color: var(--fg); }
+.tool .head .arg { color: var(--dim); }
+
+.tool .body {
+  display: flex;
+  gap: 6px;
+  color: var(--dim);
+  margin-top: 1px;
+}
+.tool .body .elbow { color: var(--dimmer); flex: none; }
+.tool .body .lines { white-space: pre-wrap; word-break: break-word; min-width: 0; }
+.tool.err .body .lines { color: var(--del); }
+.tool.warn .body .lines { color: var(--warn); }
+.tool .ms { color: var(--dimmer); }
+
+/* todo list */
+.todo .body .lines .item { display: block; }
+.todo .done { color: var(--dimmer); text-decoration: line-through; }
+.todo .doing { color: var(--fg); }
+.todo .pending { color: var(--dim); }
+
+/* diff */
+.diff .lines { display: block; }
+.diff .dl { display: block; white-space: pre; }
+.diff .dl .ln { color: var(--dimmer); display: inline-block; width: 4.5em; text-align: right; padding-right: 1em; }
+.diff .plus { color: var(--add); background: rgba(111, 191, 115, 0.08); }
+.diff .minus { color: var(--del); background: rgba(224, 104, 111, 0.08); }
+.diff .stat { color: var(--dim); }
+.diff .stat .a { color: var(--add); }
+.diff .stat .d { color: var(--del); }
+
+/* spinner */
+#spinner { color: var(--dim); margin: 4px 0 16px; }
+#spinner .glyph { color: var(--accent); margin-right: 6px; display: inline-block; }
+#spinner .meta { color: var(--dimmer); }
+
+.cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  background: var(--fg);
+  vertical-align: text-bottom;
+  animation: blink 1.05s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* -------------------------------------------------------------- composer */
+
+#composer { flex: none; padding: 0 18px 10px; }
+
+#inputwrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 7px 11px;
+  background: #1b1b20;
+  transition: border-color 0.15s;
+}
+#inputwrap:focus-within { border-color: #3d3d45; }
+#caret { color: var(--accent); flex: none; line-height: 1.55; }
+
+#input {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  resize: none;
+  color: var(--fg);
+  font: inherit;
+  line-height: 1.55;
+  max-height: 180px;
+  overflow-y: auto;
+}
+#input::placeholder { color: var(--dimmer); }
+
+#statusline {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 4px 0;
+  color: var(--dimmer);
+  font-size: 11.5px;
+}
+.sl-right .dot { margin: 0 6px; }
+.sl-left .dot { margin: 0 6px; color: var(--dimmer); }
+
+#model,
+#limit {
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: var(--dim);
+  font: inherit;
+  font-size: 11.5px;
+  cursor: pointer;
+  padding: 0;
+}
+#model:hover,
+#limit:hover { color: var(--fg); }
+#model option,
+#limit option { background: #1b1b20; color: var(--fg); }
+
+/* ---------------------------------------------------- narrow (sidebar) view */
+
+/* The activity-bar host is ~300px wide by default, so claw back the gutters
+   and let the status line wrap instead of clipping. */
+@media (max-width: 460px) {
+  #scroll { padding: 10px 10px 4px; }
+  #composer { padding: 0 10px 8px; }
+  #banner { padding: 8px 10px; margin-bottom: 14px; }
+  #inputwrap { padding: 6px 8px; gap: 7px; }
+  #statusline {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1px;
+    padding-top: 4px;
+  }
+  .diff .dl { white-space: pre-wrap; }
+  .diff .dl .ln { width: 3.2em; padding-right: 0.6em; }
+}

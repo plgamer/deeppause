@@ -1,0 +1,143 @@
+{
+  "name": "deeppause",
+  "displayName": "DeepPause",
+  "description": "A simulated coding-agent session panel. Entertainment / UI-prototyping tool — it does not call any AI service.",
+  "version": "0.2.0",
+  "publisher": "pllyrr",
+  "license": "MIT",
+  "icon": "media/icon.png",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "simulation",
+    "mock",
+    "demo",
+    "terminal",
+    "fun"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "deeppause",
+          "title": "DeepPause",
+          "icon": "media/activitybar.svg"
+        }
+      ]
+    },
+    "views": {
+      "deeppause": [
+        {
+          "id": "deeppause.sessionView",
+          "name": "Session",
+          "type": "webview"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "deeppause.open",
+        "title": "DeepPause: Open Session in Editor",
+        "icon": "$(link-external)"
+      },
+      {
+        "command": "deeppause.focusView",
+        "title": "DeepPause: Open Session"
+      },
+      {
+        "command": "deeppause.panic",
+        "title": "DeepPause: Panic (hide everything)"
+      },
+      {
+        "command": "deeppause.interrupt",
+        "title": "DeepPause: Interrupt current turn",
+        "icon": "$(debug-stop)"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "deeppause.focusView",
+        "key": "ctrl+alt+k",
+        "mac": "cmd+alt+k"
+      },
+      {
+        "command": "deeppause.panic",
+        "key": "ctrl+shift+backspace",
+        "mac": "cmd+shift+backspace"
+      }
+    ],
+    "configuration": {
+      "title": "DeepPause",
+      "properties": {
+        "deeppause.agentName": {
+          "type": "string",
+          "default": "DeepPause",
+          "description": "Name shown in the session banner."
+        },
+        "deeppause.models": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "orion-4.5",
+            "orion-4.5-mini",
+            "vega-3-turbo"
+          ],
+          "description": "Entries for the model picker. Purely cosmetic."
+        },
+        "deeppause.speed": {
+          "type": "number",
+          "default": 1,
+          "minimum": 0.25,
+          "maximum": 5,
+          "description": "Playback speed multiplier. Higher is faster."
+        },
+        "deeppause.useWorkspaceFiles": {
+          "type": "boolean",
+          "default": true,
+          "description": "Draw file paths, symbol names and code snippets from the open workspace so the transcript references real things."
+        },
+        "deeppause.autoPauseOnBlur": {
+          "type": "boolean",
+          "default": true,
+          "description": "Freeze the session when the VS Code window loses focus."
+        },
+        "deeppause.accent": {
+          "type": "string",
+          "default": "#7dd3a0",
+          "description": "Accent colour for the agent bullet and banner glyph."
+        }
+      }
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "deeppause.interrupt",
+          "when": "view == deeppause.sessionView",
+          "group": "navigation@1"
+        },
+        {
+          "command": "deeppause.open",
+          "when": "view == deeppause.sessionView",
+          "group": "navigation@2"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "vscode:prepublish": "npm run compile"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.5.4"
+  }
+}
