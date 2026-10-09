@@ -103,11 +103,6 @@
           "default": true,
           "description": "Draw file paths, symbol names and code snippets from the open workspace so the transcript references real things."
         },
-        "deeppause.autoPauseOnBlur": {
-          "type": "boolean",
-          "default": true,
-          "description": "Freeze the session when the VS Code window loses focus."
-        },
         "deeppause.accent": {
           "type": "string",
           "default": "#7dd3a0",

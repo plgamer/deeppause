@@ -66,7 +66,6 @@ The session freezes automatically when the VS Code window loses focus.
 | `deeppause.models` | `["orion-4.5", …]` | Entries in the model picker (cosmetic) |
 | `deeppause.speed` | `1` | Playback speed multiplier |
 | `deeppause.useWorkspaceFiles` | `true` | Reference real paths and symbols from the open workspace |
-| `deeppause.autoPauseOnBlur` | `true` | Freeze when the window loses focus |
 | `deeppause.accent` | `#7dd3a0` | Accent colour |
 
 ## How it works

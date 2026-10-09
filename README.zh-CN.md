@@ -60,7 +60,6 @@ code --install-extension deeppause-0.2.0.vsix
 | `deeppause.models` | `["orion-4.5", …]` | 模型选择器里的条目（纯装饰） |
 | `deeppause.speed` | `1` | 回放速度倍数 |
 | `deeppause.useWorkspaceFiles` | `true` | 从打开的工作区中取真实的路径和符号名 |
-| `deeppause.autoPauseOnBlur` | `true` | 窗口失去焦点时冻结 |
 | `deeppause.accent` | `#7dd3a0` | 强调色 |
 
 ## 实现原理

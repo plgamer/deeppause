@@ -20,14 +20,7 @@ export function activate(ctx: vscode.ExtensionContext) {
       SessionPanel.close();
       if (view.visible) void vscode.commands.executeCommand('workbench.action.closeSidebar');
     }),
-    vscode.commands.registerCommand('deeppause.interrupt', () => Session.each(s => s.interrupt())),
-
-    // Freeze the transcript when the window loses focus, so it is not mid-stream
-    // when someone alt-tabs back in.
-    vscode.window.onDidChangeWindowState(s => {
-      if (!vscode.workspace.getConfiguration('deeppause').get('autoPauseOnBlur')) return;
-      Session.each(x => (s.focused ? x.resume() : x.pause()));
-    })
+    vscode.commands.registerCommand('deeppause.interrupt', () => Session.each(s => s.interrupt()))
   );
 }
 

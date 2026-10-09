@@ -71,9 +71,6 @@ export class Session {
     this.post({ k: 'interrupted' });
   }
 
-  pause() { this.engine?.pause(); }
-  resume() { this.engine?.resume(); }
-
   dispose() {
     this.engine?.cancel();
     Session.live.delete(this);

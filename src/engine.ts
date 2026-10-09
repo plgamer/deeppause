@@ -28,8 +28,6 @@ const nextId = () => `b${++seq}`;
 
 export class Engine {
   private cancelled = false;
-  private paused = false;
-  private pausedAt = 0;
   private deadline: number | undefined;
   private tokens = 0;
   private list: string[] = [];
@@ -46,19 +44,6 @@ export class Engine {
 
   cancel() { this.cancelled = true; }
 
-  pause() {
-    if (this.paused) return;
-    this.paused = true;
-    this.pausedAt = Date.now();
-  }
-
-  /** Frozen time does not count against a `--for` budget. */
-  resume() {
-    if (!this.paused) return;
-    this.paused = false;
-    if (this.deadline !== undefined) this.deadline += Date.now() - this.pausedAt;
-  }
-
   // ---------------------------------------------------------------- timing
 
   private async sleep(ms: number) {
@@ -67,7 +52,7 @@ export class Engine {
       if (this.cancelled) throw new Cancelled();
       if (this.deadline !== undefined && Date.now() >= this.deadline) throw new Expired();
       await new Promise(r => setTimeout(r, 25));
-      if (!this.paused) left -= 25;
+      left -= 25;
     }
     if (this.cancelled) throw new Cancelled();
   }
