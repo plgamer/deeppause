@@ -18,7 +18,7 @@
 用打包好的 `.vsix`：
 
 ```
-code --install-extension deeppause-0.2.0.vsix
+code --install-extension deeppause-0.2.1.vsix
 ```
 
 或者在 VS Code 里：**扩展** → `…` 菜单 → **从 VSIX 安装…**，然后重新加载窗口。

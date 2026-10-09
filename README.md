@@ -20,7 +20,7 @@ plus whatever is already in your open workspace.
 From a packaged `.vsix`:
 
 ```
-code --install-extension deeppause-0.2.0.vsix
+code --install-extension deeppause-0.2.1.vsix
 ```
 
 Or in VS Code: **Extensions** → `…` menu → **Install from VSIX…**, then reload

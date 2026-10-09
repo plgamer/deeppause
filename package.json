@@ -2,7 +2,7 @@
   "name": "deeppause",
   "displayName": "DeepPause",
   "description": "A simulated coding-agent session panel. Entertainment / UI-prototyping tool — it does not call any AI service.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "publisher": "pllyrr",
   "license": "MIT",
   "icon": "media/icon.png",
