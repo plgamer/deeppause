@@ -1,8 +1,8 @@
 {
   "name": "deeppause",
   "displayName": "DeepPause",
-  "description": "A simulated coding-agent session panel. Entertainment / UI-prototyping tool — it does not call any AI service.",
-  "version": "0.2.1",
+  "description": "Make your screen look like an AI agent is busy coding, with a boss key. 让屏幕看起来在跑 AI 写代码的摸鱼插件，带老板键。Runs fully offline — no AI service is called.",
+  "version": "0.2.2",
   "publisher": "pllyrr",
   "license": "MIT",
   "icon": "media/icon.png",
@@ -13,10 +13,14 @@
     "Other"
   ],
   "keywords": [
+    "boss key",
+    "look busy",
+    "slacking",
+    "摸鱼",
+    "老板键",
     "simulation",
     "mock",
     "demo",
-    "terminal",
     "fun"
   ],
   "main": "./out/extension.js",
